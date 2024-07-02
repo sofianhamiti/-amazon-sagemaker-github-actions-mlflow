@@ -1,5 +1,5 @@
 processing:
-    image_uri: # <your processing ECR image URI>
+    image_uri: 103462575351.dkr.ecr.eu-north-1.amazonaws.com/mlflowsagemaker:latest
     entry_point: src/model_build/data_preparation/prepare.py
     parameters:
         output_folder: /opt/ml/processing/output
@@ -9,13 +9,13 @@ processing:
     base_job_name: housing
 
 training:
-    image_uri: # <your training ECR image URI>
+    image_uri: 103462575351.dkr.ecr.eu-north-1.amazonaws.com/mlflowsagemaker2:latest
     entry_point: train.py
     source_dir: src/model_build/training
     hyperparameters:
         n_estimators: 150
         target: MedHouseVal
-        tracking_uri: # <your mlflow tracking server URI>
+        tracking_uri: http://sagemaker.eu-north-1.amazonaws.com/arn:aws:sagemaker:eu-north-1:103462575351:endpoint/mlflow-tracking-server/mlflow1
         experiment_name: housing
         save_model_in_registry: True
         model_name: housing-random-forest
